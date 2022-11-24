@@ -40,4 +40,5 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        SCOUT_DRIVER: ${{ secrets.SCOUT_DRIVER }}
       run: vendor/bin/phpunit
