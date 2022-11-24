@@ -20,4 +20,10 @@ class ExampleTest extends TestCase
         User::factory()->create(['email' => 'test@test.com']);
         $this->assertEquals(1, User::count());
     }
+
+    public function test_that_i_can_create_another_user()
+    {
+        User::factory()->create(['email' => 'test@test.com']);
+        $this->assertEquals(1, User::count());
+    }
 }
