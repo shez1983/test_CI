@@ -42,6 +42,7 @@ jobs:
         touch database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
+        DUMMY: false
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
         SCOUT_DRIVER: database
