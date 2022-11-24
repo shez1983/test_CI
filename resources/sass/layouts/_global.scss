@@ -1,0 +1,14 @@
+.relative {
+    position: relative;
+}
+
+.container {
+    @include container-padding;
+}
+
+.mobile-form-container {
+    max-width: 475px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+}

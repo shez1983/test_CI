@@ -1,0 +1,70 @@
+.btn,
+a.btn {
+    @include btn-styles;
+
+    &-success,
+    &-warning,
+    &-info {
+        color: $white;
+
+        &:hover, &:focus, &:active {
+            color: $white;
+        }
+    }
+
+    &-primary {
+        &:hover, &:focus, &:active {
+            background-color: $primary-light;
+            border-color: $primary-light;
+        }
+    }
+
+    &-secondary {
+        &:hover, &:focus, &:active {
+            background-color: $success;
+            border-color: $success;
+        }
+    }
+
+    &-info {
+        &:hover, &:focus, &:active {
+            color: white !important;
+        }
+    }
+
+    &-light {
+        background-color: $catskill-white;
+        color: $gray-600;;
+
+        &:hover, &:focus, &:active {
+            background-color: $white;
+            color: $gray-600;
+        }
+    }
+
+    &-outline-primary {
+        &:hover, &:focus, &:active {
+            background-color: transparent;
+            border-color: $primary-light;
+            color: $primary-light;
+        }
+    }
+
+    &-outline-secondary {
+        &:hover, &:focus, &:active {
+            background-color: transparent;
+            border-color: $success;
+            color: $success;
+        }
+    }
+
+    &-outline-light {
+        border-color: $botticelli;
+        color: $gray-600;
+
+        &:hover, &:focus, &:active {
+            border-color: $catskill-white;
+            color: $gray-600;
+        }
+    }
+}

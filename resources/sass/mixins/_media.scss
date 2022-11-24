@@ -1,0 +1,33 @@
+@mixin media-mobile-nav {
+    @media (max-width: 991.98px) {
+        @content;
+    }
+}
+
+@mixin media-desktop-nav {
+    @media (min-width: #{map-get($grid-breakpoints, $desktop-nav-breakpoint)}) {
+        @content;
+    }
+}
+
+@mixin media-print {
+    @media print {
+        @content;
+    }
+}
+
+/*
+ * Custom media queries
+*/
+
+@mixin media-desktop-nav-down {
+    @media (max-width: #{map-get($grid-breakpoints, $desktop-nav-breakpoint) - 0.02px}) {
+        @content;
+    }
+}
+
+@mixin media-desktop-nav-up {
+    @media (min-width: #{map-get($grid-breakpoints, $desktop-nav-breakpoint)}) {
+        @content;
+    }
+}

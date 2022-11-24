@@ -1,0 +1,115 @@
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    @include font-size($font-size-base, 22.4px);
+}
+
+@mixin h1 {
+    @include font-size(24px, 33.6px);
+    @include font-weight(bold);
+    margin-bottom: $h1-spacer;
+
+    @include media-breakpoint-up(lg) {
+        @include font-size($h1-font-size, 50.4px);
+        margin-bottom: $h1-spacer-lg;
+    }
+}
+
+@mixin h2 {
+    @include font-size(24px, 33.6px);
+    @include font-weight(bold);
+    margin-bottom: $h2-spacer;
+
+    @include media-breakpoint-up(lg) {
+        @include font-size($h2-font-size, 33.6px);
+        margin-bottom: $h2-spacer-lg;
+    }
+}
+
+@mixin h3 {
+    @include font-size(18px, 25.2px);
+    @include font-weight(bold);
+    margin-bottom: $h3-spacer;
+
+    @include media-breakpoint-up(lg) {
+        @include font-size($h3-font-size, 25.2px);
+        margin-bottom: $h3-spacer-lg;
+    }
+}
+
+@mixin h4 {
+    @include font-size(16px, 22.4px);
+    @include font-weight(bold);
+    margin-bottom: $h4-spacer;
+
+    @include media-breakpoint-up(lg) {
+        @include font-size($h4-font-size, 22.4px);
+        margin-bottom: $h4-spacer-lg;
+    }
+}
+
+@mixin h5 {
+    @include font-size($h5-font-size);
+    margin-bottom: $h5-spacer;
+}
+
+@mixin h6 {
+    @include font-size($h5-font-size);
+    margin-bottom: $h5-spacer;
+}
+
+h1 {
+    @include h1;
+}
+
+h2 {
+    @include h2;
+}
+
+h3 {
+    @include h3;
+}
+
+h4 {
+    @include h4;
+}
+
+h5 {
+    @include h5;
+}
+
+h6 {
+    @include h6;
+}
+
+.fs-xs {
+    font-size: $font-size-xs;
+}
+
+.hr-text {
+    text-align: center;
+    justify-content: center;
+    line-height: 0.1em;
+    margin: 20px 0;
+    border-bottom: 1px solid $botticelli;
+
+    span {
+        padding: 0 10px;
+        background-color: inherit;
+    }
+}
+
+@each $color, $value in $theme-colors {
+    .link-underline--#{$color} {
+        @include link-underline($value);
+    }
+}
+
+@each $color, $value in $theme-colors {
+    .link-clean--#{$color} {
+        @include link-clean($value);
+    }
+}

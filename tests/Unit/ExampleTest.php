@@ -2,17 +2,28 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use DatabaseMigrations;
+
     /**
      * A basic test example.
      *
      * @return void
      */
-    public function test_that_true_is_true()
+    public function test_that_i_can_create_user()
     {
-        $this->assertTrue(true);
+        User::factory()->create(['email' => 'test@test.com']);
+        $this->assertEquals(1, User::count());
+    }
+
+    public function test_that_i_can_create_another_user()
+    {
+        User::factory()->create(['email' => 'test@test.com']);
+        $this->assertEquals(1, User::count());
     }
 }
