@@ -1,0 +1,10 @@
+@mixin btn-styles {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        @include font-size(12px);
+        margin-right: 10px;
+    }
+}

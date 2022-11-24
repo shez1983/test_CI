@@ -1,0 +1,74 @@
+.site-footer {
+    @include font-size(12px, 16.8px);
+    color: white;
+    background-color: $primary;
+
+    a {
+        color: white;
+    }
+
+    @include media-breakpoint-up(lg) {
+        @include font-size(16px, 22.4px);
+    }
+
+    .funded-by-logo {
+        width: 191px;
+        min-width: 191px;
+        height: 63px;
+        background-image: url('../images/logos/funded-by-wales.svg');
+        background-size: 191px 63px;
+        margin-right: 12px;
+
+        @include media-breakpoint-up(lg) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__section {
+        display: flex;
+        flex-direction: column;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid rgba($botticelli, 0.25);
+        }
+
+        padding: 30px 0;
+
+        @include media-breakpoint-up(lg) {
+            padding: 40px 0;
+            justify-content: space-between;
+            flex-direction: row;
+        }
+    }
+
+    &__details {
+        padding: 30px 0 0 0;
+
+        @include media-breakpoint-up(lg) {
+            padding: 0;
+        }
+    }
+
+    &__contacts {
+        @include font-size(10px, 16px);
+        text-align: center;
+        display: flex;
+
+        @include media-breakpoint-down(lg) {
+            padding: 0 0 30px 0;
+            border-bottom: 1px solid rgba($botticelli, 0.25);
+            width: 100%;
+        }
+
+        @include media-breakpoint-up(lg) {
+            order: 1;
+        }
+    }
+
+    &__quick-links {
+        @include media-breakpoint-up(lg) {
+            @include font-size(14px, 20px);
+            order: 1;
+        }
+    }
+}

@@ -1,66 +1,378 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Volunteering Wales (Laravel 9)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Repository: [volunteering-wales](https://github.com/3ev/volunteering-wales)
 
-## About Laravel
+We are using [laravel sail](https://laravel.com/docs/9.x/sail), click on the link for full documentation for sail.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Php version is 8.1, MySQL version 8.0
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+We will be updating the packages throughout development and also once in production.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Table of Contents
+1. [Introduction](#section-1)
+2. [Prerequisites](#section-2)
+    + 2.1 [Download Docker](#section-2-1)
+    + 2.2 [Git Prehooks](#section-2-2)
+    + 2.3 [Sail Alias](#section-2-3)
+3. [Installation](#section-3)
+    + 3.1 [Composer](#section-3-1)
+    + 3.2 [Env file](#section-3-2)
+    + 3.3 [Starting Sail](#section-3-3)
+    + 3.4 [Composer & NPM](#section-3-4)
+    + 3.5 [Additional Notes](#section-3-5)
+4. [MySQL Client Set-Up](#section-4)
+    + 4.1 [Local Databases](#section-4-1)
+5. [Xdebug Set-Up](#section-5)
+6. [Redis](#section-6)
+7. [Mail](#section-7)
+8. [MeiliSearch](#section-8)
+9. [File Storage](#section-9)
+10. [Testing](#section-10)
+11. [Sharing](#section-11)
+12. [SSR](#section-12)
+13. [Deployment](#section-13)
+    + 13.1 [Connecting to Vapor/AWS](#section-13-1)
+    + 13.2 [ENV](#section-13-2)
+    + 13.3 [Deploying](#section-13-3)
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<a name="section-2"></a>
+## 2. Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<a name="section-2-1"></a>
+### 2.1 Download Docker:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Download docker desktop: https://www.docker.com/products/docker-desktop
 
-## Laravel Sponsors
+<a name="section-2-2"></a>
+### 2.2 Git prehooks:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+run
 
-### Premium Partners
+```bash
+nano .git/hooks/pre-commit
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+and then add:
 
-## Contributing
+```
+#!/bin/bash
+./artisan git:pre-commit
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+and save the file.
 
-## Code of Conduct
+This will ensure when you are about to commit, it will run linter & tests before you commit the code to the repository.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<a name="section-2-2"></a>
+### 2.3 Sail Alias (Optional):
 
-## Security Vulnerabilities
+Sail has already been installed. Almost all commands to Laravel need to be prefixed with ./vendor/bin/sail
+or consider adding aliases to your local env.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Important:** the file you need to add/edit may be different depending on your shell that's installed on your computer
 
-## License
+```bash
+sudo nano  ~/.zshrc
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+then add on a new line:
+
+```alias sail='bash vendor/bin/sail'```
+
+save, quit and then run
+
+```bash
+source ~/.zshrc
+```
+
+---
+
+<a name="section-3"></a>
+## 3. Installation
+
+<a name="section-3-1"></a>
+### 3.1 Composer:
+
+```bash
+composer install
+```
+
+<a name="section-3-2"></a>
+### 3.2 .env
+
+```bash
+cp .env.example .env
+```
+
+
+```bash
+php artisan key:generate
+```
+<a name="section-3-3"></a>
+### 3.3 Starting Sail:
+
+Build and start laravel sail:
+
+```bash
+./vendor/bin/sail up -d
+```
+
+-d flag runs it in background
+
+or simply: ```sail up -d``` if you added alias.
+
+<a name="section-3-4"></a>
+### 3.4 Composer && NPM:
+
+run this
+```bash
+sail composer update
+```
+
+in a separate terminal:
+```bash
+sail npm install && sail npm run dev
+```
+
+navigate to the URL http://localhost
+
+<a name="section-3-5"></a>
+### 3.5 Additional Notes
+
+```bash
+sail stop                  # stop containers
+
+sail composer require      # install backend packaged
+sail npm install           # install frontend packages
+
+sail npm run dev           # compile js and css
+
+sail artisan               # list available artisan commands
+sail artisan route:clear   # clear cached routes
+sail artisan config:clear  # clear cached config
+sail artisan cache:clear   # clear cache
+sail artisan view:clear    # clear cached views
+
+sail artisan route:cache   # create a route cache file for faster route registration
+sail artisan config:cache  # create a cache file for faster configuration loading
+sail artisan view:cache    # compile all of the application's Blade templates
+
+sail artisan test          # running tests
+
+sail shell                 # ssh onto the app container
+sail root-shell            # ssh with root privileges
+sail restart               # restart server
+
+sail pint                  # to run linting
+```
+
+Run ```sail``` to see all options available to you.
+
+**Important Dont forget to re run  sail npm dev after up/restarting your sail environment**
+
+Please note that although you can run npm install /composer install etc on your local machine - due to PHP/other differences
+the package version installed may be different it is recommended to use sail <command> to install packages
+
+---
+
+<a name="section-4"></a>
+## 4. MySQL Client Set-Up
+
+<a name="section-4-1"></a>
+### 4.1 Local Databases
+Create a new TCP/IP connection in your MySQL Client application on your local machine with the following parameters:
+- Name: volunteering-wales (anything you like)
+- MySQL Host: 127.0.0.1
+- Username: root
+- Password: (Leave empty)
+- Database: laravel
+- Port: 33062
+
+---
+
+<a name="section-5"></a>
+## 5 Xdebug
+
+Read the following:
+General: https://laravel.com/docs/9.x/sail#debugging-with-xdebug
+CLI: https://laravel.com/docs/9.x/sail#xdebug-cli-usage
+Browser: https://laravel.com/docs/9.x/sail#xdebug-browser-usage
+
+
+If you are using mac/windows you don't need to worry about
+your private docker IP address as you can use the following hostnames:
+```
+# Use docker.for.mac.localhost - for OS X
+# Use docker.for.win.localhost - for Windows
+
+SAIL_XDEBUG_MODE=develop,debug,coverage
+SAIL_XDEBUG_CONFIG="client_host=docker.for.mac.localhost"
+```
+
+VSCode example:
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Listen for Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}",
+            },
+            "hostname": "localhost",
+            "ignore": ["**/vendor/**/*.php"],
+            "xdebugSettings": {
+                "max_data": 65536,
+                "show_hidden": 1,
+                "max_children": 100,
+                "max_depth": 3
+            }
+        }
+    ]
+}
+```
+
+---
+
+<a name="section-6"></a>
+## 6 Redis
+it is installed by default & I don't think you need to use it on the CLI.
+
+---
+
+<a name="section-7"></a>
+## 7 Mail
+By default, mails will be visible at: http://localhost:8025
+
+---
+
+<a name="section-8"></a>
+## 8 MeiliSearch
+By default, mails will be visible at: http://localhost:7700
+
+---
+
+<a name="section-9"></a>
+## 9 File Storage
+Locally to simulate S3, we will use MinIO - this is already configured. this means we dont have to create a test
+bucket on S3.
+
+This is available at: http://localhost:8900, username/pass are sail/password
+login and create a bucket named 'volunteering-wales'
+
+---
+
+<a name="section-10"></a>
+## 10 Testing
+
+There is a commit pre-hook to run tests after you have done git commit -m "message".. and it will run all the tests.
+So while testing please only run applicable tests (using group or test suite or just test class name.)
+
+to run tests:
+
+```bash
+sail artisan test --group orders
+```
+
+or
+```bash
+sail artisan test --testsuite orders
+```
+
+---
+
+<a name="section-11"></a>
+## 11 Sharing Site/Web hooks
+
+```bash
+sail share
+```
+
+In TrustProxies middleware:
+
+```
+protected $proxies = '*';
+```
+---
+<a name="section-12"></a>
+## 12 SSR
+
+SSR is implemented by using an external package called SideCar, what this does is use a lambda to handle SSR requests
+
+```bash
+sail artisan sidecar:deploy --activate
+```
+
+This will deploy changes to the lambda
+
+<a name="section-13"></a>
+## 13 Deployment
+For deployment, we are using a first party tool called vapor that takes away the complexities of working with AWS. It uses a .yml file
+where we can make changes before deploying and it will do the rest. For example want a storage? just add a line to yml (you'll have to create storage first though in AWS).
+more info can be found [here](https://docs.vapor.build/1.0/introduction.html)
+
+> ATM, we are using vapor's free offering so there are SOME limits, like we cannot have more than one env, cant have custom domains etc
+
+<a name="section-13-1"></a>
+### 13.1 Connecting To Vapor/AWS
+
+Go to https://vapor.laravel.com/, and create a free personal account. I'll add you to this sandbox account, 
+after which you will need to run this:
+
+```bash
+vapor login
+```
+
+or if you prefer, use my account (let me know so I can give you my login)
+
+and then run:
+
+```bash
+vapor team:current
+```
+and if you are not in the 3ev team context, use 
+
+```bash
+vapor team:switch
+```
+and choose the 3ev team context
+
+> You can also manage the DBs, Caching etc directly FROM vapor UI 
+
+<a name="section-13-2"></a>
+### 13.2 ENV
+Sometimes you will need to change env files. To do so run:
+
+```bash
+vapor env:pull production
+```
+
+a file will be created on your local machine (.env.production), 
+edit this file and then add 
+
+```bash
+vapor env:push production
+```
+You'll also need to deploy (see next section)
+
+**Please do not add/edit any of the database, caching, URL etc related env files. Only**  
+
+if you would like to view ALL env, you will need to access AWS Lambda -> click on configuration. But any changes to core .env might be overwritten by the scripr
+
+<a name="section-13-3"></a>
+### 13.3 actually deploying
+
+to deploy you need to do run from root folder
+
+```bash
+vapor deploy production
+```
+
+This will run a script and upload all your stuff to AWS. 
+

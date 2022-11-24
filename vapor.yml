@@ -1,0 +1,23 @@
+id: 36275
+name: volunteering-wales
+# DB:
+# Username: vapor
+# Password: vSpcxRj6KttSqnjIUGOCw2vX4dAe7BXzV2sQmjpQ
+
+environments:
+  production:
+    memory: 512
+    cache: volunteering-wales-2
+    cli-memory: 512
+    database: volunteering-wales-2
+    runtime: 'php-8.1:al2'
+    storage: volunteering-wales-2
+    build:
+      - 'COMPOSER_MIRROR_PATH_REPOS=1 composer install'
+      - 'php artisan event:cache'
+      - 'npm ci && npm run build'
+      - 'php artisan sidecar:deploy --activate'
+      - 'rm -rf node_modules'
+    deploy:
+      - 'php artisan migrate:fresh --seed --force'
+      - 'php artisan scout:import "\App\Models\User"'

@@ -1,0 +1,20 @@
+.well {
+    background-color: $catskill-white;
+    border: 1px solid $botticelli;
+    border-radius: .5rem;
+    padding: 20px;
+    color: $gray-800;
+
+    &__heading {
+        color: $primary;
+        font-weight: bold;
+        border-bottom: 1px solid $primary-light;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+
+    .hr-text {
+        color: $primary;
+        background-color: $catskill-white;
+    }
+}

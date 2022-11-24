@@ -1,0 +1,36 @@
+@function z($name) {
+    @if index($z-indexes, $name) {
+        @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+    } @else {
+        @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+        @return null;
+    }
+}
+
+@mixin absolute-fill {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@mixin list-unstyled {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+@mixin container-padding {
+    padding-left: 30px;
+    padding-right: 30px;
+
+    @include media-breakpoint-up(xssm) {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+
+    @include media-breakpoint-up(lg) {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
