@@ -41,4 +41,5 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
         SCOUT_DRIVER: ${{ secrets.SCOUT_DRIVER }}
+        SSR_ENABLED: false
       run: vendor/bin/phpunit
