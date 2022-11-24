@@ -16,8 +16,8 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        Artisan::call('sidecar:activate', [
-            '--env' => 'local',
-        ]);
+//        Artisan::call('sidecar:activate', [
+//            '--env' => 'local',
+//        ]);
     }
 }
